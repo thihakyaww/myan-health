@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* ============================================================
+   MyanHealth design tokens — PRD §15 (verbatim)
+   ============================================================ */
+:root {
+  --ink: #081A15;
+  --teal: #0B6760;
+  --teal-dark: #07514B;
+  --paper: #FFFCF4;
+  --paper-deep: #F0EADE;
+  --line: #B8B2A6;
+  --muted: #2C3832;
+  --moss: #CED9C8;
+  --sky: #D8E9E6;
+  --saffron: #D4A73A;
+  --severe: #C84B30;
+  --severe-soft: #FFF0E9;
+  --serif: 'DM Serif Display', Georgia, serif;        /* English display headings ONLY */
+  --sans: var(--sans-latin), var(--sans-myanmar), Manrope, 'Noto Sans Myanmar', sans-serif; /* body text, MM + EN */
+  --shadow: 0 16px 38px rgba(36, 50, 43, .10);
+  --radius: 18px;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+
+  --background: oklch(0.98 0.004 80);
+  --foreground: oklch(0.12 0.035 170);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.035 170);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.035 170);
+  --primary: oklch(0.38 0.09 175);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.01 80);
+  --secondary-foreground: oklch(0.12 0.035 170);
+  --muted-foreground: oklch(0.25 0.035 170);
+  --accent: oklch(0.94 0.01 80);
+  --accent-foreground: oklch(0.12 0.035 170);
+  --destructive: oklch(0.55 0.2 25);
+  --border: oklch(0.82 0.018 80);
+  --input: oklch(0.82 0.018 80);
+  --ring: oklch(0.38 0.09 175);
+  --sidebar: oklch(0.18 0.03 170);
+  --sidebar-foreground: oklch(0.99 0 0);
+  --sidebar-primary: oklch(0.38 0.09 175);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.24 0.04 175);
+  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --sidebar-border: oklch(0.26 0.03 170);
+  --sidebar-ring: oklch(0.38 0.09 175);
+}
+
+:root.high-contrast {
+  --paper: #FFFFFF;
+  --paper-deep: #F5F5F5;
+  --ink: #000000;
+  --teal: #00574F;
+  --teal-dark: #003D38;
+  --muted: #1A1A1A;
+  --line: #222222;
+  --severe: #B91C0C;
+  --severe-soft: #FEE2E2;
+  --sky: #CCFBF1;
+  --saffron: #CA8A04;
+  --moss: #A7F3D0;
+  --border: oklch(0.70 0.02 80);
+  --input: oklch(0.70 0.02 80);
+  --shadow: 0 16px 38px rgba(0, 0, 0, .15);
+  --sidebar: oklch(0.12 0.03 170);
+  --sidebar-foreground: oklch(0.99 0 0);
+  --sidebar-primary: oklch(0.38 0.09 175);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.20 0.04 175);
+  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --sidebar-border: oklch(0.22 0.03 170);
+  --sidebar-ring: oklch(0.38 0.09 175);
+}
+
+/* Tailwind v4 theme mapping */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-teal: var(--teal);
+  --color-teal-dark: var(--teal-dark);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-moss: var(--moss);
+  --color-sky: var(--sky);
+  --color-saffron: var(--saffron);
+  --color-severe: var(--severe);
+  --color-severe-soft: var(--severe-soft);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
+
+  --radius-app: var(--radius);
+  --shadow-app: var(--shadow);
+
+  --ease-out-app: var(--ease-out);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--sans);
+}
+
+/* ============================================================
+   Structure & motion layer (design-system pass)
+   ============================================================ */
+::selection {
+  background: var(--teal);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Eyebrow label — EN utility face */
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Saffron tick — signature rule of the bilingual lockup */
+.tick {
+  display: inline-block;
+  width: 26px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--saffron);
+}
+
+/* Hero load stagger (one orchestrated moment) */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  opacity: 0;
+  animation: rise-in .7s var(--ease-out) forwards;
+}
+.rise-1 { animation-delay: .05s }
+.rise-2 { animation-delay: .15s }
+.rise-3 { animation-delay: .25s }
+.rise-4 { animation-delay: .35s }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; opacity: 1; }
+  * { transition-duration: 0.01ms !important; }
+}
